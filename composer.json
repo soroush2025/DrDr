@@ -11,5 +11,7 @@
             "email": "soroush2025@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/console": "^6.3"
+    }
 }
