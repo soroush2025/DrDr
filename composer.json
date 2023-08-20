@@ -2,7 +2,7 @@
     "name": "samuel/dr-dr",
     "autoload": {
         "psr-4": {
-            "Samuel\\DrDr\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [
@@ -12,6 +12,13 @@
         }
     ],
     "require": {
+        "php": "^8.0",
         "symfony/console": "^6.3"
+    },
+    "bin": [
+        "bin/demo"
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.3"
     }
 }
