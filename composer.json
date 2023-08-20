@@ -1,0 +1,15 @@
+{
+    "name": "samuel/dr-dr",
+    "autoload": {
+        "psr-4": {
+            "Samuel\\DrDr\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "soroush",
+            "email": "soroush2025@gmail.com"
+        }
+    ],
+    "require": {}
+}
