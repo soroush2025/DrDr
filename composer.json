@@ -2,7 +2,7 @@
     "name": "samuel/dr-dr",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "Src/"
         }
     },
     "authors": [
