@@ -7,19 +7,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class User extends Command
+class Github extends Command
 {
   /**
    * The name of the command (the part after "bin/demo").
    * @var string
    */
-  protected static $defaultName = "login";
+  protected static $defaultName = "github";
   /**
    * The command description shown when running "php bin/demo list".
    * @var string
    */
   protected static $defaultDescription = "Login via username and password";
-  protected $dbConnection;
+  protected $dbConnection = null;
   function __construct($dbConnection)
   {
     parent::__construct();
@@ -57,12 +57,12 @@ class User extends Command
       sprintf("what is your Github Token Or just Enter To use Dafault Token?")
     );
 
-    $io->comment("your username is " . $user);
-    // $io->comment("your password is " . $password);
-
-    $u = $user ?: "soroush2025";
+    $u = $user ?: "drdrtest";
     $p = $password ?: "12345";
-    $t = $token ?: "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";
+    $t = $token ?: "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";
+
+    $io->comment("your username is " . $u);
+    // $io->comment("your password is " . $password);
 
     $query =
       "INSERT INTO `token`(`username`, `password`, `token`)
@@ -74,9 +74,11 @@ class User extends Command
       $t .
       "')";
 
-    $result = $this->dbConnection->query($query);
-    if (!$result) {
-      echo "Error description: " . $this->dbConnection->error;
+    if (!is_null($this->dbConnection)) {
+      $result = $this->dbConnection->query($query);
+      if (!$result) {
+        echo "Error description: " . $this->dbConnection->error;
+      }
     }
 
     $curl = curl_init();
@@ -101,11 +103,11 @@ class User extends Command
     // // var_dump($result);
 
     if (!is_null($result)) {
-      echo "your Repository List";
+      $io->comment("your Repository List");
       $i = 0;
       foreach ($result as $value) {
         echo ++$i;
-        var_dump($value["name"]);
+        $io->comment($value["name"]);
       }
     }
 
